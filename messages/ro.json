@@ -1,0 +1,49 @@
+{
+  "HomePage": {
+    "title": "CRYSTAL LOGISTICS SERVICES"
+  },
+  "BasicHero": {
+    "kicker": "/ DESPRE /",
+    "title": "CRYSTAL LOGISTICS",
+    "subtitle": { "about": "CRYSTAL LOGISTCS" }
+  },
+  "Navbar": {
+    "nav": {
+      "bursa": "Bursa de transport",
+      "transport": "Transport",
+      "transportatori": "Transportatori",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "cta": {
+      "quote": "Cere o cotație",
+      "short": "Cotație"
+    },
+    "menu": {
+      "title": "Meniu"
+    },
+    "labels": {
+      "phone": "+40 123 456 789",
+      "email": "Email",
+      "language": "Limbă"
+    },
+    "a11y": {
+      "home": "Acasă",
+      "menu": "Deschide meniul",
+      "call": "Sună-ne",
+      "email": "Trimite email"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ro {🇷🇴 Romanian} en {🇺🇸 English} other {Unknown}}"
+  },
+  "Navigation": {
+    "home": "Home",
+    "pathnames": "Pathnames"
+  },
+  "NotFoundPage": {
+    "description": "Please double-check the browser address bar or use the navigation to go to a known page.",
+    "title": "Page not found"
+  }
+}
