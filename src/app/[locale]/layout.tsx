@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   description: "Crystal Logistics Services",
 };
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
