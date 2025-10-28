@@ -2,12 +2,19 @@
   "HomePage": {
     "title": "CRYSTAL LOGISTICS SERVICES"
   },
+
   "BasicHero": {
-    "kicker": "/ DESPRE /",
-    "title": "CRYSTAL LOGISTICS",
-    "subtitle": { "about": "CRYSTAL LOGISTCS" }
+    "title": "Crystal Logistics Services",
+    "paragraph": "Fie că e vorba de transporturi complete sau în regim de grupaj, atât național cât și global, noi îți punem la dispoziție o gamă largă de soluții pentru a-ți transporta marfa la cele mai bune costuri.",
+    "ctaPrimary": "Cere o ofertă!",
+    "ctaSecondary": "Devino transportator partener",
+    "hasCargoTitle": "Ai Marfă de Transportat?",
+    "hasCargoText1": "Ai nevoie de transport marfă intern sau internațional?",
+    "hasCargoText2": "Crystal Logistics Services îți oferă servicii complete de transport rutier, transport agabaritic și expediții rapide prin bursa de transporturi CLS.",
+    "hasCargoText3": "Completează formularul și primești o ofertă logistică completă în maximum 30 de minute!",
+    "fillForm": "Completează formularul"
   },
-  "Navbar": {
+"Navbar": {
     "nav": {
       "bursa": "Bursa de transport",
       "transport": "Transport",
@@ -36,7 +43,7 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, ro {🇷🇴 Romanian} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, ro {🇷🇴 RO} en {🇺🇸 ENG} other {Unknown}}"
   },
   "Navigation": {
     "home": "Home",

@@ -8,8 +8,6 @@ export default function HomePage() {
     <>
       <Navbar />
       <BasicHero titleKey="subtitle.about" />
-      <BasicHero titleKey="subtitle.about" />
-      <BasicHero titleKey="subtitle.about" />
     </>
   );
 }

@@ -3,17 +3,15 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Raleway } from "next/font/google"; // 👈 import Raleway from next/font/google
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Load Raleway with desired weights
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"], // customize as needed
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -36,11 +34,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
   return (
-    <html>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <html lang={locale} className={raleway.className}>
+      <body className={`${raleway.variable} antialiased`}>
+      <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
-    </html>
+      </html>
   );
 }
