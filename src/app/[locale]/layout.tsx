@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google"; // 👈 import Raleway from next/font/google
 import "../globals.css";
+import Navbar from "@/components/site/Navbar";
 
 // Load Raleway with desired weights
 const raleway = Raleway({
@@ -36,10 +37,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-      <html lang={locale} className={raleway.className}>
+    <html lang={locale} className={raleway.className}>
       <body className={`${raleway.variable} antialiased`}>
-      <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Navbar />
+          {children}
+        </NextIntlClientProvider>
       </body>
-      </html>
+    </html>
   );
 }

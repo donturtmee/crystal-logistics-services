@@ -88,8 +88,8 @@ export default function Navbar({
         <div className="hidden lg:flex items-center gap-5">
           {/* Animated yellow fill button */}
           <Link
-              href="/cotatie"
-              className="
+            href="/cotatie"
+            className="
     relative overflow-hidden group inline-flex items-center gap-2
     border border-yellow-400 rounded-full
     px-5 py-2 text-base font-semibold
@@ -99,7 +99,7 @@ export default function Navbar({
           >
             {/* fill layer: white fills left to right */}
             <span
-                className="
+              className="
       absolute inset-0 bg-white
       origin-left scale-x-0 group-hover:scale-x-100
       transition-transform duration-500 ease-out
@@ -107,15 +107,10 @@ export default function Navbar({
             ></span>
 
             {/* text layer */}
-            <span
-                className="relative z-10 flex items-center gap-2 group-hover:text-[#000] transition-colors duration-300"
-            >
-    {t('cta.quote')} <ArrowUpRight className="h-5 w-5" />
-  </span>
+            <span className="relative z-10 flex items-center gap-2 group-hover:text-[#000] transition-colors duration-300">
+              {t("cta.quote")} <ArrowUpRight className="h-5 w-5" />
+            </span>
           </Link>
-
-
-
 
           <Link
             href="tel:+40123456789"
@@ -159,10 +154,10 @@ export default function Navbar({
             </SheetTrigger>
 
             <SheetContent
-                side="left"
-                className="h-screen w-screen bg-neutral-900 text-white px-8 pt-8 border-none"
+              side="left"
+              className="h-screen w-screen bg-neutral-900 text-white px-8 pt-8 border-none"
             >
-            <SheetHeader className="mb-5">
+              <SheetHeader className="mb-5">
                 <SheetTitle className="flex items-center gap-2 text-lg">
                   {logo ? (
                     <div className="h-10 w-10">{logo}</div>
