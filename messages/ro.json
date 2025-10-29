@@ -16,7 +16,7 @@
   },
   "Navbar": {
     "nav": {
-      "bursa": "Bursa de transport",
+      "bursa": "Despre Noi",
       "transport": "Transport",
       "transportatori": "Transportatori",
       "blog": "Blog",
@@ -24,7 +24,7 @@
     },
     "cta": {
       "quote": "Cere o cotație",
-      "short": "Cotație"
+      "short": "Cere o cotație"
     },
     "menu": {
       "title": "Meniu"
@@ -43,7 +43,7 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, ro {🇷🇴 RO} en {🇺🇸 ENG} other {Unknown}}"
+    "locale": "{locale, select, ro {RO} en {ENG} other {Unknown}}"
   },
   "Navigation": {
     "home": "Home",
