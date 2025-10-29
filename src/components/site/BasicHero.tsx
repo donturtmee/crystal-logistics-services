@@ -1,8 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, ChevronRight, Send } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import ReviewsSection from "@/components/site/ReviewsSection";
 
 export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" }) {
     const t = useTranslations("BasicHero");
@@ -11,7 +13,8 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
         <section className="bg-neutral-900 text-white overflow-hidden">
 
             {/* === HERO TEXT SECTION === */}
-            <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12 py-20 flex flex-col md:flex-row items-start justify-between">
+            <div
+                className="relative w-full max-w-7xl mx-auto px-6 md:px-12 py-20 flex flex-col md:flex-row items-start justify-between">
                 <div className="flex flex-col items-start md:w-1/2">
                     <h1 className="text-4xl md:text-6xl font-regular leading-tight">
                         {t("title")}
@@ -22,7 +25,8 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
                     <p className="max-w-lg whitespace-pre-line">{t("paragraph")}</p>
 
                     {/* === BULINA DOAR DESKTOP === */}
-                    <div className="hidden md:block absolute top-[155px] left-[70%] -translate-x-1/2 rotate-[20deg] z-20">
+                    <div
+                        className="hidden md:block absolute top-[155px] left-[70%] -translate-x-1/2 rotate-[20deg] z-20">
                         <button
                             className="
                 w-32 h-32 rounded-full bg-white text-black font-medium shadow-lg
@@ -46,18 +50,15 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
                 />
 
                 <div className="relative z-20 w-full h-full flex items-end">
-                    {/* WRAPPER BUTOANE – MOBIL ABSOLUT / DESKTOP NORMAL */}
                     <div
                         className="
               absolute bottom-6 left-6
               flex flex-col gap-3
-              md:static md:pb-[100px] md:left-auto md:bottom-auto
-              md:w-full md:max-w-7xl md:mx-auto md:px-6 md:px-12
+              md:static md:pb-[100px] md:w-full md:max-w-7xl md:mx-auto md:px-12
               md:flex md:flex-col md:gap-4 md:items-start
             "
                     >
 
-                        {/* === CERE O OFERTĂ — DOAR PE TELEFON === */}
                         {/* === CERE O OFERTĂ — DOAR PE TELEFON === */}
                         <button
                             className="
@@ -78,17 +79,13 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
     "
   ></span>
 
-                            {/* Text stânga */}
-                            <span className="relative z-10">
-    {t("ctaPrimary")}
-  </span>
+                            <span className="relative z-10">{t("ctaPrimary")}</span>
 
-                            {/* Săgeata împinsă în dreapta complet */}
-                            <span className="relative z-10 ml-auto pl-3 group-hover:text-black transition-colors duration-300">
-    <ArrowRight size={16} />
+                            <span
+                                className="relative z-10 ml-auto pl-3 group-hover:text-black transition-colors duration-300">
+    <ArrowRight size={16}/>
   </span>
                         </button>
-
 
                         {/* === DEVINO PARTENER — DESKTOP + MOBIL === */}
                         <button
@@ -107,11 +104,11 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
                   group-hover:scale-x-100 transition-transform duration-500 ease-out
                 "
               ></span>
-                            <span className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-300">
+                            <span
+                                className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-300">
                 {t("ctaSecondary")} <ArrowRight size={16}/>
               </span>
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -131,11 +128,13 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
               px-10 py-2 text-white text-sm md:text-base font-medium transition-all duration-300 w-fit
             "
                     >
-                        <span className="absolute inset-0 bg-yellow-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                        <span
+                            className="absolute inset-0 bg-yellow-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
 
-                        <span className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-300">
+                        <span
+                            className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-300">
               {t("fillForm")}
-                            <ArrowRight size={16} />
+                            <ArrowRight size={16}/>
             </span>
                     </button>
                 </div>
@@ -143,8 +142,7 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
 
             {/* === SERVICII === */}
             <section className="bg-neutral-900 text-white py-20">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
-
+                <div className="max-w-7xl mx-auto px-6 md:px-12 pb-20">
                     <div className="flex items-center justify-center gap-6 mb-16">
                         <span className="block h-[2px] w-16 bg-yellow-500"></span>
                         <h2 className="text-center text-4xl md:text-5xl font-normal">Servicii</h2>
@@ -155,10 +153,10 @@ export default function PageHero({ backgroundVideo = "/videos/heroVideo.webm" })
                     <motion.div
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true }}
+                        viewport={{once: true}}
                         variants={{
-                            hidden: { opacity: 0 },
-                            show: { opacity: 1, transition: { staggerChildren: 0.18 } }
+                            hidden: {opacity: 0},
+                            show: {opacity: 1, transition: {staggerChildren: 0.18}},
                         }}
                         className="grid md:grid-cols-2 gap-10"
                     >
@@ -194,17 +192,17 @@ Ideal pentru livrări urgente sau sensibile.`,
                                 desc: `Este alternativa economică și sustenabilă pentru volume mari de marfă generală sau agabaritică.
 
 Ideal în proiecte logistice complexe.`,
-                            }
+                            },
                         ].map((c, i) => (
                             <motion.div
                                 key={i}
                                 variants={{
-                                    hidden: { opacity: 0, y: 30 },
-                                    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                                    hidden: {opacity: 0, y: 30},
+                                    show: {opacity: 1, y: 0, transition: {duration: 0.6, ease: "easeOut"}},
                                 }}
                                 className="bg-white text-black rounded-md overflow-hidden shadow-lg"
                             >
-                                <img src={c.img} className="w-full h-56 object-cover" />
+                                <img src={c.img} className="w-full h-56 object-cover"/>
                                 <div className="p-6">
                                     <div className="flex items-center gap-3 mb-4">
                                         <span className="block h-6 w-[3px] bg-yellow-500"></span>
@@ -212,10 +210,12 @@ Ideal în proiecte logistice complexe.`,
                                     </div>
                                     <p className="text-gray-800 whitespace-pre-line leading-relaxed mb-6">{c.desc}</p>
                                     <a href={c.link} className="inline-flex flex-col group">
-                    <span className="flex items-center gap-2 text-black font-medium">
-                      Află mai multe <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
-                                        <span className="block h-[2px] w-14 bg-yellow-500 mt-1 group-hover:w-20 transition-all"></span>
+                                        <span className="flex items-center gap-2 text-black font-medium">
+                                            Află mai multe <ChevronRight size={18}
+                                                                         className="group-hover:translate-x-1 transition-transform"/>
+                                        </span>
+                                        <span
+                                            className="block h-[2px] w-14 bg-yellow-500 mt-1 group-hover:w-20 transition-all"></span>
                                     </a>
                                 </div>
                             </motion.div>
@@ -224,35 +224,220 @@ Ideal în proiecte logistice complexe.`,
 
                     {/* CARD MARE */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        initial={{opacity: 0, y: 40}}
+                        whileInView={{opacity: 1, y: 0}}
+                        viewport={{once: true}}
+                        transition={{duration: 0.7, ease: "easeOut"}}
                         className="mt-10 bg-white text-black rounded-md overflow-hidden shadow-xl"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2">
-                            <img src="/images/multimodal.webp" className="w-full h-72 md:h-full object-cover" />
+                            <img src="/images/multimodal.webp" className="w-full h-72 md:h-full object-cover"/>
                             <div className="p-8 md:p-12 flex flex-col justify-center">
                                 <div className="flex items-center gap-3 mb-4">
                                     <span className="block h-6 w-[3px] bg-yellow-500"></span>
                                     <h3 className="text-2xl font-normal">Transport Multimodal</h3>
                                 </div>
                                 <p className="text-gray-800 mb-8 leading-relaxed max-w-xl">
-                                    Acest tip de transport combină rutier, maritim, aerian și feroviar pentru eficiență și costuri optimizate.
+                                    Acest tip de transport combină rutier, maritim, aerian și feroviar pentru eficiență
+                                    și costuri optimizate.
                                 </p>
                                 <a href="/servicii/transport-multimodal" className="inline-flex flex-col group">
-                  <span className="flex items-center gap-2 text-black font-medium">
-                    Află mai multe <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                                    <span className="block h-[2px] w-14 bg-yellow-500 mt-1 group-hover:w-20 transition-all"></span>
+                                    <span className="flex items-center gap-2 text-black font-medium">
+                                        Află mai multe <ChevronRight size={18}
+                                                                     className="group-hover:translate-x-1 transition-transform"/>
+                                    </span>
+                                    <span
+                                        className="block h-[2px] w-14 bg-yellow-500 mt-1 group-hover:w-20 transition-all"></span>
                                 </a>
                             </div>
                         </div>
                     </motion.div>
-
                 </div>
+
+                {/* === STATISTICI (ANIMATE) === */}
+                <AnimatedStatsSection/>
             </section>
 
+            <ReviewsSection/>
+
+            {/* === NEWSLETTER === */}
+            <motion.section
+                initial="hidden"
+                whileInView="show"
+                viewport={{once: true, amount: 0.2}}
+                variants={{
+                    hidden: {opacity: 0, y: 60},
+                    show: {opacity: 1, y: 0, transition: {duration: 0.8, ease: "easeOut"}},
+                }}
+                className="bg-white text-neutral-900 py-16 border-t border-neutral-200"
+            >
+                <div className="max-w-md mx-auto text-center px-6">
+                    <h2 className="text-xl md:text-2xl font-semibold mb-6">
+                        Abonează-te la newsletter
+                    </h2>
+
+                    <motion.form
+                        variants={{
+                            hidden: {opacity: 0, y: 20},
+                            show: {
+                                opacity: 1,
+                                y: 0,
+                                transition: {duration: 0.6, delay: 0.2},
+                            },
+                        }}
+                        className="space-y-4"
+                    >
+                        {/* === Email === */}
+                        <div className="flex flex-col items-start text-left">
+                            <label
+                                htmlFor="email"
+                                className="text-sm mb-1 font-medium text-neutral-700"
+                            >
+                                Adresa ta de e-mail<span className="text-[#F4BD19]">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="nume@email.com"
+                                className="w-full px-3 py-2 rounded border border-neutral-300 bg-white focus:outline-none focus:border-[#F4BD19] transition text-sm text-neutral-900 placeholder-neutral-400"
+                            />
+                        </div>
+
+                        {/* === Checkbox === */}
+                        <motion.div
+                            variants={{
+                                hidden: {opacity: 0, y: 15},
+                                show: {opacity: 1, y: 0, transition: {duration: 0.5, delay: 0.4}},
+                            }}
+                            className="flex items-start gap-2 text-sm text-neutral-600 text-left"
+                        >
+                            <input
+                                type="checkbox"
+                                id="consent"
+                                className="mt-1 accent-[#F4BD19]"
+                            />
+                            <label htmlFor="consent">
+                                Am citit și sunt de acord cu{" "}
+                                <a
+                                    href="#"
+                                    className="text-[#F4BD19] hover:text-[#FFD84D] transition font-medium"
+                                >
+                                    Politica de confidențialitate
+                                </a>.
+                            </label>
+                        </motion.div>
+
+                        {/* === Submit button === */}
+                        <motion.button
+                            type="submit"
+                            variants={{
+                                hidden: {opacity: 0, y: 10},
+                                show: {opacity: 1, y: 0, transition: {duration: 0.5, delay: 0.6}},
+                            }}
+                            className="relative overflow-hidden group w-full flex items-center justify-center gap-2
+             border border-[#F2C200] rounded bg-[#F2C200] text-black font-medium
+             py-2 transition-all duration-300"
+                        >
+                            {/* Animated white overlay */}
+                            <span
+                                className="absolute inset-0 bg-white origin-left scale-x-0
+               group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                            ></span>
+
+                            {/* Text + icon layer */}
+                            <span
+                                className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-300">
+              Trimite <Send size={16}/>
+            </span>
+                        </motion.button>
+                    </motion.form>
+                </div>
+            </motion.section>
         </section>
+    );
+}
+
+// === COMPONENTA ANIMATĂ DE STATISTICI ===
+function AnimatedStatsSection() {
+    const stats = [
+        {value: 1400000, label: "km parcurși", icon: "/images/numbers1.svg"},
+        {value: 2300, label: "clienți mulțumiți", icon: "/images/numbers2.svg"},
+        {value: 24000, label: "mărfuri transportate", icon: "/images/numbers3.svg"},
+        {value: 900, label: "milioane €", icon: "/images/numbers4.svg"},
+        {value: 98, label: "grad de satisfacție", icon: "/images/numbers5.svg"},
+    ];
+
+    return (
+        <section className="bg-white text-neutral-900 py-20">
+            <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{once: true}}
+                variants={{
+                    hidden: {opacity: 0, y: 60},
+                    show: {opacity: 1, y: 0, transition: {duration: 0.8, ease: "easeOut"}},
+                }}
+                className="max-w-7xl mx-auto px-6 md:px-12"
+            >
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-3xl font-normal mb-3">
+                        Rezultatele noastre vorbesc
+                    </h2>
+                    <div className="w-16 h-[2px] bg-yellow-500 mx-auto"></div>
+                </div>
+
+                <div className="flex flex-col md:grid md:grid-cols-5 text-center w-full">
+                    {stats.map((s, i) => (
+                        <AnimatedStat key={i} {...s} />
+                    ))}
+                </div>
+            </motion.div>
+        </section>
+    );
+}
+
+function AnimatedStat({value, label, icon}: { value: number; label: string; icon: string }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, {once: true, amount: 0.4});
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        if (!isInView) return;
+        let start = 0;
+        const end = value;
+        const duration = 1800;
+        const stepTime = 20;
+        const increment = end / (duration / stepTime);
+
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+                start = end;
+                clearInterval(timer);
+            }
+            setCount(Math.floor(start));
+        }, stepTime);
+
+        return () => clearInterval(timer);
+    }, [isInView, value]);
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{opacity: 0, y: 40}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
+            transition={{duration: 0.6, ease: "easeOut"}}
+            className="flex flex-col items-center py-8 border-b border-neutral-200 md:border-none w-full"
+        >
+            <div className="hidden md:flex justify-center mb-3">
+                <img src={icon} alt={label} className="h-16 w-16 object-contain"/>
+            </div>
+            <div className="text-3xl font-semibold">
+                {count.toLocaleString("ro-RO")}
+            </div>
+            <div className="text-yellow-500 text-lg md:text-xl mt-1">{label}</div>
+        </motion.div>
     );
 }

@@ -66,3 +66,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* === Ascunde complet bara semi-transparentă / indicatorul de scroll === */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow: hidden; /* elimină indicatorul de scroll */
+  overflow-x: auto; /* dar păstrează scrollul activ */
+  -webkit-overflow-scrolling: touch; /* păstrează scroll-ul fin pe iOS */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
