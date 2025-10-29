@@ -1,47 +1,45 @@
-import BlogCard from "@/components/blog/BlogCard";
-import Sidebar from "@/components/blog/Sidebar";
-import Pagination from "@/components/blog/Pagination";
-import { BLOG_POSTS } from "../../../../data/blog";
+import "@/lib/firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
+import BlogIndexClient from "@/components/blog/BlogIndexClient";
+import type { BlogPost } from "@/types/blog";
 
-export const revalidate = 0; // doar pentru mock; vom trece pe ISR după integrarea Firebase
+export const runtime = "nodejs";
+export const revalidate = 60;
 
-export default function BlogPage() {
-  const posts = BLOG_POSTS; // în curând: fetch din Firestore
+export default async function BlogIndex() {
+  const db = getFirestore();
+  const snap = await db
+    .collection("posts")
+    .orderBy("publishedAt", "desc")
+    .limit(100)
+    .get();
+
+  const posts: BlogPost[] = snap.docs.map((d) => {
+    const p = d.data() as any;
+    return {
+      slug: p.slug ?? d.id,
+      title: p.title,
+      subtitle: p.subtitle ?? "",
+      author: p.author ?? "",
+      coverUrl: p.coverUrl ?? null,
+      tags: Array.isArray(p.tags) ? p.tags : [],
+      excerpt: p.excerpt ?? "",
+      publishedAt: p.publishedAt?.toDate?.() ?? null,
+    };
+  });
+
+  const latest = posts.slice(0, 3);
+  const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
+    (post.tags ?? []).forEach((t: string) => {
+      acc[t] = (acc[t] ?? 0) + 1;
+    });
+    return acc;
+  }, {});
+  const categories = Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([tag, count]) => ({ tag, count }));
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Header „/ BLOG / CRYSTAL LOGISTICS” – opțional: fă separat ca hero */}
-      <section className="bg-amber-400">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-zinc-900">
-          <div className="text-sm font-semibold">/ BLOG /</div>
-          <h1 className="text-3xl font-extrabold tracking-tight">
-            CRYSTAL LOGISTICS
-          </h1>
-        </div>
-      </section>
-
-      {/* Conținut */}
-      <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="grid grid-cols-12 gap-8">
-          {/* listă articole */}
-          <div className="col-span-12 lg:col-span-8">
-            <div className="space-y-10">
-              {posts.map((p) => (
-                <BlogCard key={p.id} post={p} />
-              ))}
-            </div>
-
-            <div className="mt-6 border-t border-zinc-200 pt-4">
-              <Pagination />
-            </div>
-          </div>
-
-          {/* sidebar */}
-          <div className="col-span-12 lg:col-span-4">
-            <Sidebar />
-          </div>
-        </div>
-      </section>
-    </main>
+    <BlogIndexClient posts={posts} categories={categories} latest={latest} />
   );
 }
